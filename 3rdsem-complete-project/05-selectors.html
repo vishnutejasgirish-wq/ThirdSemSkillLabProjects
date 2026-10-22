@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05 - CSS Selectors</title>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; color: #0f172a; padding: 2rem 1.25rem; max-width: 860px; margin: 0 auto; line-height: 1.6; }
+    .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; }
+    .back-link { text-decoration: none; color: #4f46e5; font-weight: 700; background: #eef2ff; padding: 0.45rem 0.9rem; border-radius: 8px; font-size: 0.9rem; }
+    .btn-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 1.5rem; }
+    .sel-btn { background: white; border: 2px solid #cbd5e1; padding: 0.45rem 0.85rem; border-radius: 8px; font-family: monospace; font-weight: 700; cursor: pointer; font-size: 0.85rem; }
+    .sel-btn.active { background: #4f46e5; color: white; border-color: #4f46e5; }
+    .sandbox { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 1.5rem; space-y: 0.75rem; }
+    .target-item { padding: 0.75rem 1rem; border-radius: 10px; border: 2px solid transparent; margin-bottom: 0.65rem; background: #f1f5f9; transition: all 0.2s; }
+    .highlight { background: #fef9c3; }
+    #vip-banner { background: #ede9fe; color: #5b21b6; font-weight: 700; }
+    .matched-glow { border-color: #4f46e5 !important; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.2); transform: scale(1.01); }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <a href="index.html" class="back-link">← Back to index.html</a>
+    <a href="06-specificity.html" class="back-link">Next: 06 Specificity →</a>
+  </div>
+
+  <h1>05. Interactive CSS Selectors Tester</h1>
+  <p>Click any CSS selector below to highlight the matching HTML elements in real time:</p>
+
+  <div class="btn-bar">
+    <button class="sel-btn" onclick="testSelector('p', this)">p (Element)</button>
+    <button class="sel-btn" onclick="testSelector('.highlight', this)">.highlight (Class)</button>
+    <button class="sel-btn" onclick="testSelector('#vip-banner', this)">#vip-banner (ID)</button>
+    <button class="sel-btn" onclick="testSelector('.card > p', this)">.card &gt; p (Child)</button>
+    <button class="sel-btn" onclick="testSelector('[data-role]', this)">[data-role] (Attribute)</button>
+  </div>
+
+  <div class="sandbox" id="sandboxArea">
+    <div id="vip-banner" class="target-item">div#vip-banner — Targeted by ID selector <code>#vip-banner</code></div>
+    <p class="target-item">Standard <code>&lt;p&gt;</code> tag outside .card</p>
+    <div class="card" style="padding:1rem; border:2px dashed #cbd5e1; border-radius:12px;">
+      <strong>div.card container</strong>
+      <p class="target-item">Direct child <code>&lt;p&gt;</code> inside <code>.card</code> (Matches <code>.card &gt; p</code>)</p>
+      <p class="target-item highlight">Paragraph with <code>class="highlight"</code></p>
+    </div>
+    <div class="target-item highlight" data-role="badge" style="margin-top:0.75rem;">
+      div.highlight with <code>data-role="badge"</code> attribute
+    </div>
+  </div>
+
+  <script>
+    function testSelector(selector, btn) {
+      document.querySelectorAll('.sel-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const sandbox = document.getElementById('sandboxArea');
+      sandbox.querySelectorAll('.target-item').forEach(el => el.classList.remove('matched-glow'));
+      sandbox.querySelectorAll(selector).forEach(el => el.classList.add('matched-glow'));
+    }
+  </script>
+</body>
+</html>

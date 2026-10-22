@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>07 - CSS Box Model</title>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; color: #0f172a; padding: 2rem 1.25rem; max-width: 900px; margin: 0 auto; line-height: 1.6; }
+    .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; }
+    .back-link { text-decoration: none; color: #4f46e5; font-weight: 700; background: #eef2ff; padding: 0.45rem 0.9rem; border-radius: 8px; font-size: 0.9rem; }
+    .layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; align-items: center; }
+    .controls { background: white; padding: 1.5rem; border-radius: 16px; border: 1px solid #e2e8f0; }
+    .slider-row { margin-bottom: 1rem; }
+    .slider-row label { display: flex; justify-content: space-between; font-weight: 700; font-size: 0.88rem; }
+    .slider-row input[type="range"] { width: 100%; }
+    .margin-zone { background: #ffedd5; border: 2px dashed #f97316; display: inline-block; border-radius: 14px; transition: padding 0.15s; }
+    .box-target { background: #bbf7d0; border-style: solid; border-color: #4f46e5; text-align: center; font-weight: 800; color: #065f46; border-radius: 8px; transition: all 0.15s; }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <a href="index.html" class="back-link">← Back to index.html</a>
+    <a href="08-flexbox-playground.html" class="back-link">Next: 08 Flexbox →</a>
+  </div>
+
+  <h1>07. Interactive CSS Box Model</h1>
+  <p>Drag the sliders to inspect how <strong>Margin</strong>, <strong>Border</strong>, <strong>Padding</strong>, and <strong>box-sizing</strong> affect rendered size:</p>
+
+  <div class="layout">
+    <div class="controls">
+      <div class="slider-row">
+        <label><span>Content Width</span><span id="valW">240px</span></label>
+        <input type="range" id="rngW" min="160" max="320" value="240" oninput="renderBox()">
+      </div>
+      <div class="slider-row">
+        <label><span>Padding (Green Inner)</span><span id="valP">24px</span></label>
+        <input type="range" id="rngP" min="0" max="48" value="24" oninput="renderBox()">
+      </div>
+      <div class="slider-row">
+        <label><span>Border (Indigo)</span><span id="valB">8px</span></label>
+        <input type="range" id="rngB" min="0" max="20" value="8" oninput="renderBox()">
+      </div>
+      <div class="slider-row">
+        <label><span>Margin (Orange Outer)</span><span id="valM">20px</span></label>
+        <input type="range" id="rngM" min="0" max="48" value="20" oninput="renderBox()">
+      </div>
+      <label style="font-weight:700; display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+        <input type="checkbox" id="chkBorderBox" checked onchange="renderBox()">
+        Use <code>box-sizing: border-box;</code>
+      </label>
+      <p id="totalReadout" style="margin-top:0.75rem; font-family:monospace; font-weight:700; color:#4f46e5;"></p>
+    </div>
+
+    <div style="text-align:center; background:white; padding:2rem; border-radius:16px; border:1px solid #e2e8f0;">
+      <div class="margin-zone" id="marginBox">
+        <div class="box-target" id="targetBox">Content Box</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function renderBox() {
+      const w = +document.getElementById('rngW').value;
+      const p = +document.getElementById('rngP').value;
+      const b = +document.getElementById('rngB').value;
+      const m = +document.getElementById('rngM').value;
+      const isBorderBox = document.getElementById('chkBorderBox').checked;
+
+      document.getElementById('valW').textContent = w + 'px';
+      document.getElementById('valP').textContent = p + 'px';
+      document.getElementById('valB').textContent = b + 'px';
+      document.getElementById('valM').textContent = m + 'px';
+
+      const marginBox = document.getElementById('marginBox');
+      const targetBox = document.getElementById('targetBox');
+
+      marginBox.style.padding = m + 'px';
+      targetBox.style.width = w + 'px';
+      targetBox.style.padding = p + 'px';
+      targetBox.style.borderWidth = b + 'px';
+      targetBox.style.boxSizing = isBorderBox ? 'border-box' : 'content-box';
+
+      const actualWidth = isBorderBox ? w : (w + p * 2 + b * 2);
+      document.getElementById('totalReadout').textContent = 'Rendered Element Width: ' + actualWidth + 'px';
+    }
+    renderBox();
+  </script>
+</body>
+</html>

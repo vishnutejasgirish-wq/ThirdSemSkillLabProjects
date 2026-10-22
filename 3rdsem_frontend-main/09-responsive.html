@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- This line is needed for phones to show the page correctly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Design</title>
+  <style>
+    /* PHONE (small screen): this is the default */
+    body {
+      background-color: lightpink;
+      font-family: Arial;
+    }
+    .cards {
+      display: flex;
+      flex-direction: column;   /* cards stacked */
+      gap: 10px;
+    }
+    .card {
+      background-color: white;
+      padding: 20px;
+      border: 1px solid gray;
+    }
+
+    /* LAPTOP (screen 768px or wider): these rules are added */
+    @media (min-width: 768px) {
+      body {
+        background-color: lightblue;
+      }
+      .cards {
+        flex-direction: row;    /* cards side by side */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Resize the browser window</h1>
+  <p>Pink + stacked = phone. Blue + side by side = laptop.</p>
+
+  <div class="cards">
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+    <div class="card">Card 3</div>
+  </div>
+
+  <!--
+    TRY THIS:
+    Press F12, then Ctrl+Shift+M, and choose a phone like "iPhone SE".
+    Change 768px to 1000px and see when the layout switches.
+  -->
+
+</body>
+</html>

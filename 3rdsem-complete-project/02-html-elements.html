@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02 - Common HTML Elements</title>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; color: #0f172a; padding: 2rem 1.25rem; max-width: 900px; margin: 0 auto; line-height: 1.6; }
+    .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; }
+    .back-link { text-decoration: none; color: #4f46e5; font-weight: 700; background: #eef2ff; padding: 0.45rem 0.9rem; border-radius: 8px; font-size: 0.9rem; }
+    section { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 1.5rem; margin-bottom: 1.25rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    h2 { color: #4f46e5; margin-top: 0; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.5rem; font-size: 1.2rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; }
+    th, td { border: 1px solid #cbd5e1; padding: 0.7rem; text-align: left; font-size: 0.92rem; }
+    th { background: #f1f5f9; font-weight: 700; }
+    code { background: #f1f5f9; padding: 0.15rem 0.4rem; border-radius: 4px; font-family: monospace; color: #be123c; font-size: 0.9em; }
+    blockquote { border-left: 4px solid #4f46e5; background: #eef2ff; padding: 0.75rem 1rem; border-radius: 0 8px 8px 0; margin: 0.75rem 0; font-style: italic; }
+    details { background: #f8fafc; border: 1px solid #cbd5e1; padding: 0.75rem 1rem; border-radius: 8px; margin-top: 0.75rem; cursor: pointer; }
+    summary { font-weight: 700; color: #1e293b; }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <a href="index.html" class="back-link">← Back to index.html</a>
+    <a href="03-forms.html" class="back-link">Next: 03 Forms →</a>
+  </div>
+
+  <h1>02. Common HTML5 Elements Reference</h1>
+  <p>Essential building blocks used in modern semantic webpages:</p>
+
+  <section>
+    <h2>1. Headings &amp; Inline Text Semantics</h2>
+    <p>Use <strong>&lt;strong&gt;</strong> for strong importance, <em>&lt;em&gt;</em> for stress emphasis, <mark>&lt;mark&gt;</mark> to highlight key terms, <code>&lt;code&gt;</code> for inline code, and <kbd>Ctrl + S</kbd> (<code>&lt;kbd&gt;</code>) for keyboard shortcuts.</p>
+    <blockquote>"Semantic HTML gives meaning to web structure for both browsers and screen readers." — MDN Web Docs</blockquote>
+  </section>
+
+  <section>
+    <h2>2. Ordered (<code>&lt;ol&gt;</code>) &amp; Unordered (<code>&lt;ul&gt;</code>) Lists</h2>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:1rem;">
+      <div>
+        <strong>Unordered List (Bullets):</strong>
+        <ul>
+          <li><code>&lt;header&gt;</code> &amp; <code>&lt;nav&gt;</code></li>
+          <li><code>&lt;main&gt;</code> &amp; <code>&lt;section&gt;</code></li>
+          <li><code>&lt;footer&gt;</code></li>
+        </ul>
+      </div>
+      <div>
+        <strong>Ordered List (Numbered):</strong>
+        <ol>
+          <li>Plan HTML structure</li>
+          <li>Style with CSS rules</li>
+          <li>Add interactivity with JS</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Structured Data Tables &amp; Native Accordion</h2>
+    <table>
+      <thead>
+        <tr><th>Element</th><th>Role</th><th>Default Display</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>&lt;div&gt;</code> / <code>&lt;section&gt;</code></td><td>Block-level container</td><td><code>block</code></td></tr>
+        <tr><td><code>&lt;span&gt;</code> / <code>&lt;a&gt;</code></td><td>Inline text wrapper / hyperlink</td><td><code>inline</code></td></tr>
+        <tr><td><code>&lt;img&gt;</code> / <code>&lt;button&gt;</code></td><td>Embedded media / interactive control</td><td><code>inline-block</code></td></tr>
+      </tbody>
+    </table>
+
+    <details>
+      <summary>💡 Click to expand native HTML5 &lt;details&gt; &amp; &lt;summary&gt; accordion (Zero JS!)</summary>
+      <p style="margin-top:0.5rem;">The <code>&lt;details&gt;</code> element creates a native disclosure widget that users can open and close without a single line of JavaScript.</p>
+    </details>
+  </section>
+</body>
+</html>

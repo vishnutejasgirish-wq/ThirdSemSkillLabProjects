@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flexbox</title>
+  <style>
+    /* The PARENT box. We style the parent, and the children move. */
+    .container {
+      display: flex;                  /* turn on flexbox */
+      flex-direction: row;            /* TRY: column */
+      justify-content: flex-start;    /* TRY: center, flex-end, space-between, space-evenly */
+      align-items: flex-start;        /* TRY: center, flex-end */
+      gap: 10px;                      /* space between the boxes */
+
+      height: 300px;
+      background-color: lightgray;
+    }
+
+    /* The CHILD boxes */
+    .item {
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+      font-size: 30px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Flexbox</h1>
+
+  <div class="container">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+  </div>
+
+  <!--
+    TRY THIS (change one line, save, refresh):
+    1. justify-content: center;          -> boxes move to the middle
+    2. justify-content: space-between;   -> boxes spread to the edges
+    3. align-items: center;              -> boxes move to the vertical middle
+    4. flex-direction: column;           -> boxes stack top to bottom
+  -->
+
+</body>
+</html>

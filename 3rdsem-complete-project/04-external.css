@@ -1,0 +1,27 @@
+/* =========================================================
+   04-external.css
+   Linked inside 04-css-three-ways.html via <link rel="stylesheet">
+   ========================================================= */
+
+.external-card {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border-left: 6px solid #059669;
+  padding: 1.5rem;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.15);
+  margin-bottom: 1.25rem;
+  transition: transform 0.2s ease;
+}
+
+.external-card:hover {
+  transform: translateY(-2px);
+}
+
+.external-card h3 {
+  color: #065f46;
+  margin-bottom: 0.4rem;
+}
+
+.external-card p {
+  color: #047857;
+}

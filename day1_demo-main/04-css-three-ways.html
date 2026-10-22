@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Three Ways to Add CSS</title>
+
+  <!-- 3. EXTERNAL CSS: a separate file, linked here (best for real projects) -->
+  <link rel="stylesheet" href="04-external.css">
+
+  <!-- 2. INTERNAL CSS: a <style> block inside the head (good for one-page tests) -->
+  <style>
+    .internal { background: #e3e9f5; color: #2f5fa8; padding: 16px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Three ways to add CSS</h1>
+
+  <!-- 1. INLINE CSS: style="" directly on the tag (quick demos only) -->
+  <p style="background:#f8e1dc; color:#c2382b; padding:16px; border-radius:8px;">
+    1. INLINE: style="" written on this one paragraph. Hard to reuse.
+  </p>
+
+  <p class="internal">2. INTERNAL: styled by the &lt;style&gt; block in the &lt;head&gt;.</p>
+
+  <p class="external">3. EXTERNAL: styled by 04-external.css. One file can style every page.</p>
+
+  <hr>
+  <h2>Who wins if all three style the same element?</h2>
+  <!-- external says green, internal says blue, inline says red -->
+  <p id="battle" class="external internal" style="color: red;">
+    I am styled three ways. The INLINE colour (red) wins.
+  </p>
+  <p>Delete <code>style="color: red;"</code> from the code above and refresh: now the rule written
+     LATER in the head wins (internal blue, because &lt;style&gt; comes after &lt;link&gt;).</p>
+</body>
+</html>

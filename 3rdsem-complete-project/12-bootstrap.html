@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12 - Bootstrap 5 Demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light py-4">
+  <div class="container" style="max-width: 900px;">
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+      <a href="index.html" class="btn btn-outline-primary btn-sm fw-bold">← Back to index.html</a>
+      <a href="spot-the-bug.html" class="btn btn-primary btn-sm fw-bold">Next: Spot the Bug →</a>
+    </div>
+
+    <div class="p-4 bg-white rounded-4 shadow-sm border mb-4">
+      <span class="badge bg-primary mb-2">Bootstrap 5.3 CDN</span>
+      <h1 class="fw-bold h2">12. Rapid UI with Bootstrap 5</h1>
+      <p class="text-secondary mb-0">Build responsive 12-column grids, alerts, cards, and buttons using utility classes without writing custom CSS.</p>
+    </div>
+
+    <div class="alert alert-success d-flex align-items-center justify-content-between rounded-3" role="alert">
+      <div><strong>.alert .alert-success:</strong> Bootstrap 5 is active and ready!</div>
+      <span class="badge bg-success">12-Col Grid</span>
+    </div>
+
+    <h5 class="fw-bold mt-4 mb-3">Bootstrap 12-Column Responsive Grid (<code>.row &gt; .col-md-4</code>)</h5>
+    <div class="row g-3 mb-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h6 class="card-title fw-bold text-primary">.col-md-4 (Card 1)</h6>
+            <p class="card-text small text-muted">Stacks vertically on mobile, 3 columns side-by-side on medium+ screens.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h6 class="card-title fw-bold text-success">.col-md-4 (Card 2)</h6>
+            <p class="card-text small text-muted">Styled with <code>.card .shadow-sm .border-0</code>.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <h6 class="card-title fw-bold text-purple">.col-md-4 (Card 3)</h6>
+            <p class="card-text small text-muted">Zero custom CSS rules required.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-4 bg-white rounded-4 shadow-sm border">
+      <h6 class="fw-bold mb-3">Bootstrap Button Variants</h6>
+      <div class="d-flex flex-wrap gap-2">
+        <button class="btn btn-primary">.btn-primary</button>
+        <button class="btn btn-success">.btn-success</button>
+        <button class="btn btn-danger">.btn-danger</button>
+        <button class="btn btn-warning">.btn-warning</button>
+        <button class="btn btn-dark">.btn-dark</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

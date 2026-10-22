@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11 - Grid vs Flexbox</title>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; color: #0f172a; padding: 2rem 1.25rem; max-width: 920px; margin: 0 auto; line-height: 1.6; }
+    .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; }
+    .back-link { text-decoration: none; color: #4f46e5; font-weight: 700; background: #eef2ff; padding: 0.45rem 0.9rem; border-radius: 8px; font-size: 0.9rem; }
+    .comparison { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+    .card { background: white; padding: 1.5rem; border-radius: 16px; border: 1px solid #e2e8f0; }
+    .flex-bar { display: flex; gap: 0.5rem; background: #f1f5f9; padding: 1rem; border-radius: 12px; align-items: center; }
+    .flex-bar div { background: #0284c7; color: white; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 700; font-size: 0.85rem; }
+    .grid-demo {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      grid-template-rows: 48px 120px 44px;
+      grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+      gap: 8px;
+      background: #f1f5f9;
+      padding: 1rem;
+      border-radius: 12px;
+      color: white;
+      font-weight: 700;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+    .grid-demo > * { border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <a href="index.html" class="back-link">← Back to index.html</a>
+    <a href="12-bootstrap.html" class="back-link">Next: 12 Bootstrap →</a>
+  </div>
+
+  <h1>11. CSS Grid (2D) vs Flexbox (1D)</h1>
+
+  <div class="comparison">
+    <div class="card">
+      <span style="background:#e0f2fe; color:#0369a1; padding:0.25rem 0.6rem; border-radius:6px; font-size:0.75rem; font-weight:800;">1D • Flexbox</span>
+      <h3>Flexbox: Single Axis (Row OR Column)</h3>
+      <p style="font-size:0.9rem; color:#64748b;">Ideal for navigation bars, toolbars, and distributing space along a single line.</p>
+      <div class="flex-bar">
+        <div>Brand</div>
+        <div>Links</div>
+        <div style="margin-left:auto; background:#4f46e5;">Login (margin-left: auto)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span style="background:#e0e7ff; color:#4338ca; padding:0.25rem 0.6rem; border-radius:6px; font-size:0.75rem; font-weight:800;">2D • CSS Grid</span>
+      <h3>CSS Grid: Rows AND Columns Together</h3>
+      <p style="font-size:0.9rem; color:#64748b;">Ideal for full-page templates and 2D card galleries.</p>
+      <div class="grid-demo">
+        <header style="grid-area:header; background:#4f46e5;">Header (spans 2 cols)</header>
+        <aside style="grid-area:sidebar; background:#0ea5e9;">Sidebar</aside>
+        <main style="grid-area:main; background:#10b981;">Main Content</main>
+        <footer style="grid-area:footer; background:#475569;">Footer (spans 2 cols)</footer>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

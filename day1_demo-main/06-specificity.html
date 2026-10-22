@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Specificity Battle</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 900px; margin: 30px auto; padding: 0 16px; }
+    #intro { font-size: 48px; font-weight: bold; padding: 24px; border: 3px dashed #999; text-align: center; }
+    .rules label { display: flex; gap: 12px; align-items: center; font-family: monospace; font-size: 18px; padding: 8px; border-radius: 6px; }
+    .rules label:hover { background: #eee; }
+    .score { font-family: system-ui; font-size: 14px; color: #666; }
+  </style>
+
+  <!-- Each rule lives in its own <style> so we can switch it on/off -->
+  <style id="r1">p { color: green; }</style>
+  <style id="r2">.lead { color: blue; }</style>
+  <style id="r3">#intro { color: red; }</style>
+  <style id="r4">p { color: purple; }</style>
+</head>
+<body>
+  <h1>Specificity battle: who wins?</h1>
+  <p>HTML: <code>&lt;p id="intro" class="lead"&gt;Who wins?&lt;/p&gt;</code>. Tick rules on/off. <b>Predict first</b>, then click.</p>
+
+  <div class="rules">
+    <label><input type="checkbox" data-rule="r1" checked> p { color: green; } <span class="score">element = weakest</span></label>
+    <label><input type="checkbox" data-rule="r2" checked> .lead { color: blue; } <span class="score">class beats element</span></label>
+    <label><input type="checkbox" data-rule="r3" checked> #intro { color: red; } <span class="score">id beats class</span></label>
+    <label><input type="checkbox" data-rule="r4" checked> p { color: purple; } <span class="score">same as rule 1, but written later</span></label>
+    <label><input type="checkbox" id="inline"> style="color: orange" <span class="score">inline beats everything</span></label>
+  </div>
+
+  <p id="intro" class="lead">Who wins?</p>
+  <p id="target-info"></p>
+
+  <script>
+    const target = document.getElementById("intro");   // the battle paragraph
+
+    function explain() {
+      const colour = getComputedStyle(target).color;
+      document.getElementById("target-info").textContent = "Computed colour right now: " + colour;
+    }
+
+    document.querySelectorAll("[data-rule]").forEach(function (box) {
+      box.addEventListener("change", function () {
+        document.getElementById(box.dataset.rule).disabled = !box.checked;
+        explain();
+      });
+    });
+
+    document.getElementById("inline").addEventListener("change", function () {
+      target.style.color = this.checked ? "orange" : "";
+      explain();
+    });
+
+    explain();
+  </script>
+</body>
+</html>

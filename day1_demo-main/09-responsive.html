@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Without this line, phones pretend to be ~980px wide and zoom out -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Design Demo</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+    }
+
+    /* Live width badge so the class can see the breakpoint */
+    #width {
+      position: fixed;
+      bottom: 12px;
+      right: 12px;
+      background: #141b2d;
+      color: #f2994a;
+      font: bold 20px monospace;
+      padding: 8px 14px;
+      border-radius: 8px;
+    }
+
+    /* ========== MOBILE FIRST: default styles = phone ========== */
+    header {
+      display: flex;
+      flex-direction: column;
+      /* stacked on phones */
+      gap: 10px;
+      padding: 16px;
+      background: #c2382b;
+      /* RED = phone layout */
+      color: white;
+    }
+
+    header nav a {
+      color: white;
+      margin-right: 12px;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .card {
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* images never overflow */
+    .sidebar {
+      background: #fcefd9;
+      padding: 16px;
+      display: none;
+    }
+
+    /* hidden on phones */
+    .layout {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .layout main {
+      flex: 1;
+    }
+
+    .label::after {
+      content: "PHONE layout (under 600px)";
+    }
+
+    /* ========== TABLET: 600px and wider ========== */
+    @media (min-width: 600px) {
+      header {
+        background: #b4531a;
+      }
+
+      /* ORANGE = tablet */
+      .cards {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .card {
+        flex: 1 1 240px;
+      }
+
+      .label::after {
+        content: "TABLET layout (600px – 899px)";
+      }
+    }
+
+    /* ========== DESKTOP: 900px and wider ========== */
+    @media (min-width: 900px) {
+      header {
+        flex-direction: row;
+        /* side by side on desktop */
+        justify-content: space-between;
+        align-items: center;
+        background: #2f5fa8;
+        /* BLUE = desktop */
+      }
+
+      .layout {
+        flex-direction: row;
+      }
+
+      .sidebar {
+        display: block;
+        width: 260px;
+      }
+
+      /* sidebar appears */
+      .label::after {
+        content: "DESKTOP layout (900px +)";
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1 class="label"></h1>
+    <nav><a href="#">Home</a><a href="#">Projects</a><a href="#">Contact</a></nav>
+  </header>
+
+  <div class="container layout">
+    <main>
+      <p>Drag the browser window narrower and wider, or press <b>F12 → Ctrl+Shift+M</b> and choose a phone.
+        Watch the header colour, the cards and the sidebar change at <b>600px</b> and <b>900px</b>.</p>
+      <img src="https://picsum.photos/1200/300" alt="Wide banner image">
+      <div class="cards">
+        <div class="card">
+          <h3>Card 1</h3>
+          <p>Stacked on phones, side by side on bigger screens.</p>
+        </div>
+        <div class="card">
+          <h3>Card 2</h3>
+          <p>flex: 1 1 240px lets cards grow and wrap.</p>
+        </div>
+        <div class="card">
+          <h3>Card 3</h3>
+          <p>No fixed widths anywhere.</p>
+        </div>
+      </div>
+    </main>
+    <aside class="sidebar">
+      <h3>Sidebar</h3>
+      <p>Only visible on desktop (display: none on small screens).</p>
+    </aside>
+  </div>
+
+  <div id="width"></div>
+  <script>
+    function showWidth() { document.getElementById("width").textContent = window.innerWidth + "px"; }
+    window.addEventListener("resize", showWidth);
+    showWidth();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10 - display and position</title>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; color: #0f172a; padding: 2rem 1.25rem; max-width: 900px; margin: 0 auto; line-height: 1.6; }
+    .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; }
+    .back-link { text-decoration: none; color: #4f46e5; font-weight: 700; background: #eef2ff; padding: 0.45rem 0.9rem; border-radius: 8px; font-size: 0.9rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+    .card { background: white; padding: 1.5rem; border-radius: 16px; border: 1px solid #e2e8f0; }
+    .parent-stage {
+      position: relative;
+      height: 190px;
+      background: #eef2ff;
+      border: 2px dashed #4f46e5;
+      border-radius: 14px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+    .target-badge {
+      background: #4f46e5;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: inline-block;
+      box-shadow: 0 8px 16px rgba(79,70,229,0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <a href="index.html" class="back-link">← Back to index.html</a>
+    <a href="11-grid-vs-flex.html" class="back-link">Next: 11 Grid vs Flexbox →</a>
+  </div>
+
+  <h1>10. display and position</h1>
+
+  <div class="grid">
+    <div class="card">
+      <h3>1. CSS <code>display</code> Values</h3>
+      <div style="background:#dbeafe; color:#1e40af; padding:0.6rem; border-radius:8px; font-weight:700; margin-bottom:0.75rem; display:block;">
+        display: block (Takes 100% full width)
+      </div>
+      <div style="margin-bottom:0.75rem;">
+        <span style="background:#d1fae5; color:#065f46; padding:0.35rem 0.6rem; border-radius:6px; font-weight:700; display:inline;">display: inline #1</span>
+        <span style="background:#d1fae5; color:#065f46; padding:0.35rem 0.6rem; border-radius:6px; font-weight:700; display:inline;">display: inline #2</span>
+      </div>
+      <div>
+        <span style="background:#fef3c7; color:#92400e; padding:0.65rem 1rem; border-radius:8px; font-weight:700; display:inline-block;">display: inline-block (Accepts width/padding)</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="margin:0;">2. CSS <code>position</code></h3>
+        <select id="posSelect" onchange="changePos()" style="padding:0.4rem; border-radius:8px; font-family:monospace; font-weight:700;">
+          <option value="absolute" selected>position: absolute</option>
+          <option value="relative">position: relative</option>
+          <option value="static">position: static</option>
+        </select>
+      </div>
+      <div class="parent-stage">
+        <div style="font-family:monospace; font-size:0.8rem; color:#4f46e5;">.parent { position: relative; }</div>
+        <div style="background:#cbd5e1; padding:0.5rem; border-radius:6px; margin:0.5rem 0; font-size:0.85rem;">Sibling Element</div>
+        <div id="posBadge" class="target-badge" style="position:absolute; top:12px; right:12px;">
+          Target (position: absolute)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function changePos() {
+      const mode = document.getElementById('posSelect').value;
+      const el = document.getElementById('posBadge');
+      el.textContent = 'Target (position: ' + mode + ')';
+      if (mode === 'absolute') {
+        el.style.cssText = 'position:absolute; top:12px; right:12px;';
+      } else if (mode === 'relative') {
+        el.style.cssText = 'position:relative; top:16px; left:24px;';
+      } else {
+        el.style.cssText = 'position:static;';
+      }
+    }
+  </script>
+</body>
+</html>

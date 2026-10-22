@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04 - Three Ways to Add CSS</title>
+  <!-- 1. External CSS Link -->
+  <link rel="stylesheet" href="04-external.css">
+
+  <!-- 2. Internal CSS inside <style> tag -->
+  <style>
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+      line-height: 1.6;
+    }
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .back-link {
+      text-decoration: none;
+      color: #4f46e5;
+      font-weight: 700;
+      background: #eef2ff;
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+    .internal-card {
+      background-color: #eff6ff;
+      border-left: 6px solid #2563eb;
+      padding: 1.5rem;
+      border-radius: 14px;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 8px 20px -5px rgba(37, 99, 235, 0.12);
+    }
+    .internal-card h3 { color: #1d4ed8; margin-top: 0; margin-bottom: 0.4rem; }
+    code { background: rgba(15,23,42,0.07); padding: 0.15rem 0.4rem; border-radius: 4px; font-family: monospace; }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <a href="index.html" class="back-link">← Back to index.html</a>
+    <a href="05-selectors.html" class="back-link">Next: 05 Selectors →</a>
+  </div>
+
+  <h1>04. Three Ways to Add CSS</h1>
+  <p style="margin-bottom: 1.5rem;">Compare Inline, Internal, and External stylesheets side-by-side:</p>
+
+  <!-- 1. Inline CSS via style="" attribute -->
+  <div style="background: #fef2f2; border-left: 6px solid #dc2626; padding: 1.5rem; border-radius: 14px; margin-bottom: 1.25rem; box-shadow: 0 8px 20px -5px rgba(220, 38, 38, 0.12);">
+    <h3 style="color: #b91c1c; margin-top: 0; margin-bottom: 0.4rem;">1. Inline CSS (<code>style="..."</code>)</h3>
+    <p style="color: #991b1b; margin: 0;">Applied directly on this <code>&lt;div&gt;</code> tag. Highest specificity, but difficult to maintain or reuse.</p>
+  </div>
+
+  <!-- 2. Internal CSS via <style> in <head> -->
+  <div class="internal-card">
+    <h3>2. Internal CSS (<code>&lt;style&gt;</code> in <code>&lt;head&gt;</code>)</h3>
+    <p style="margin: 0; color: #1e40af;">Styled using the <code>.internal-card</code> class inside this file's <code>&lt;head&gt;</code> section.</p>
+  </div>
+
+  <!-- 3. External CSS via 04-external.css -->
+  <div class="external-card">
+    <h3>3. External CSS (<code>04-external.css</code> via <code>&lt;link rel="stylesheet"&gt;</code>)</h3>
+    <p style="margin: 0;"><strong>Industry Best Practice!</strong> Loaded from <a href="04-external.css" style="color:#065f46; font-weight:700;">04-external.css</a> so one file can style hundreds of pages.</p>
+  </div>
+</body>
+</html>

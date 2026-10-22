@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03 - HTML Forms</title>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; color: #0f172a; padding: 2rem 1.25rem; max-width: 820px; margin: 0 auto; line-height: 1.6; }
+    .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; }
+    .back-link { text-decoration: none; color: #4f46e5; font-weight: 700; background: #eef2ff; padding: 0.45rem 0.9rem; border-radius: 8px; font-size: 0.9rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; align-items: start; }
+    form { background: white; padding: 1.75rem; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px rgba(0,0,0,0.04); }
+    .field { margin-bottom: 1.1rem; }
+    label { display: block; font-weight: 700; margin-bottom: 0.35rem; font-size: 0.88rem; color: #1e293b; }
+    input[type="text"], input[type="email"], input[type="date"], select, textarea {
+      width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; box-sizing: border-box;
+    }
+    input:focus, select:focus { outline: 2px solid #4f46e5; border-color: transparent; }
+    button { background: #4f46e5; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 10px; font-weight: 700; cursor: pointer; width: 100%; font-size: 0.95rem; }
+    button:hover { background: #4338ca; }
+    pre { background: #0f172a; color: #34d399; padding: 1.25rem; border-radius: 14px; font-size: 0.85rem; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <a href="index.html" class="back-link">← Back to index.html</a>
+    <a href="04-css-three-ways.html" class="back-link">Next: 04 CSS Three Ways →</a>
+  </div>
+
+  <h1>03. HTML Forms &amp; Input Validation</h1>
+  <p>Fill out and submit the form below to see how HTML5 validates inputs and serializes <code>FormData</code>:</p>
+
+  <div class="grid">
+    <form id="demoForm">
+      <div class="field">
+        <label for="fullname">Full Name (<code>required</code>)</label>
+        <input type="text" id="fullname" name="fullname" value="Vishal Pranav" required>
+      </div>
+      <div class="field">
+        <label for="email">University Email (<code>type="email"</code>)</label>
+        <input type="email" id="email" name="email" value="vishal@rvce.edu.in" required>
+      </div>
+      <div class="field">
+        <label for="track">Workshop Track (<code>&lt;select&gt;</code>)</label>
+        <select id="track" name="track">
+          <option value="Frontend Architecture">Frontend Architecture (HTML/CSS/JS)</option>
+          <option value="Full-Stack Engineering">Full-Stack Web Engineering</option>
+          <option value="UI/UX Systems">Responsive UI/UX Systems</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="rating">Confidence Level: <span id="rangeVal">8</span>/10 (<code>type="range"</code>)</label>
+        <input type="range" id="rating" name="confidence" min="1" max="10" value="8" style="width:100%;" oninput="document.getElementById('rangeVal').textContent = this.value">
+      </div>
+      <button type="submit">Submit Registration</button>
+    </form>
+
+    <div>
+      <h3 style="margin-top:0;">Captured FormData Payload:</h3>
+      <pre id="outputBox">{
+  "status": "Ready — click Submit Registration"
+}</pre>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('demoForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target).entries());
+      document.getElementById('outputBox').textContent = JSON.stringify(data, null, 2);
+    });
+  </script>
+</body>
+</html>

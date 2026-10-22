@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Selectors</title>
+  <style>
+    /* 1. ELEMENT selector: styles ALL <p> tags */
+    p {
+      font-size: 20px;
+    }
+
+    /* 2. CLASS selector (starts with a dot): styles every class="highlight" */
+    .highlight {
+      background-color: yellow;
+    }
+
+    /* 3. ID selector (starts with #): styles only ONE element, id="title" */
+    #title {
+      color: purple;
+    }
+
+    /* 4. DESCENDANT selector: <p> that is INSIDE class="box" */
+    .box p {
+      color: green;
+    }
+
+    /* 5. PSEUDO-CLASS: when the mouse is OVER the link */
+    a:hover {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="title">CSS Selectors</h1>
+
+  <p>A normal paragraph.</p>
+  <p class="highlight">A paragraph with class="highlight".</p>
+  <p class="highlight">Another one with the same class.</p>
+
+  <div class="box">
+    <p>I am inside class="box", so I am green.</p>
+  </div>
+
+  <a href="#">Move your mouse over me</a>
+
+  <!-- TRY THIS: add class="highlight" to the first paragraph -->
+
+</body>
+</html>

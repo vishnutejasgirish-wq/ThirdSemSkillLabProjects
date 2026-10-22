@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Playground</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 1100px; margin: 20px auto; padding: 0 16px; }
+    .controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .controls label { display: flex; flex-direction: column; font-weight: 600; font-family: monospace; font-size: 15px; gap: 4px; }
+    .controls select, .controls input { font-size: 15px; padding: 6px; }
+
+    /* THE FLEX CONTAINER (parent) */
+    #container {
+      display: flex;
+      height: 340px;
+      background: #e3e9f5;
+      border: 3px solid #2f5fa8;
+      border-radius: 8px;
+      padding: 10px;
+    }
+    /* THE FLEX ITEMS (children) */
+    .item {
+      background: #f2994a;
+      color: #141b2d;
+      font: bold 24px system-ui;
+      width: 110px;
+      min-height: 60px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+    }
+    .item:nth-child(2) { min-height: 100px; }
+    .item:nth-child(3) { min-height: 140px; }
+
+    #code { font-family: monospace; font-size: 18px; background: #141b2d; color: #f3f1ea; padding: 16px; border-radius: 8px; white-space: pre; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Flexbox playground</h1>
+  <p>Change the options. Only the <b>parent</b> (blue box) is being styled; the children move.</p>
+
+  <div class="controls">
+    <label>flex-direction
+      <select data-prop="flexDirection"><option>row</option><option>row-reverse</option><option>column</option><option>column-reverse</option></select>
+    </label>
+    <label>justify-content (main axis)
+      <select data-prop="justifyContent"><option>flex-start</option><option>center</option><option>flex-end</option><option>space-between</option><option>space-around</option><option>space-evenly</option></select>
+    </label>
+    <label>align-items (cross axis)
+      <select data-prop="alignItems"><option>stretch</option><option>flex-start</option><option>center</option><option>flex-end</option></select>
+    </label>
+    <label>flex-wrap
+      <select data-prop="flexWrap"><option>nowrap</option><option>wrap</option></select>
+    </label>
+    <label>gap: <span id="gapv">0px</span>
+      <input type="range" id="gap" min="0" max="60" value="0">
+    </label>
+    <label>number of items
+      <input type="range" id="count" min="1" max="12" value="5">
+    </label>
+  </div>
+
+  <div id="container"></div>
+  <div id="code"></div>
+
+  <script>
+    const c = document.getElementById("container");
+
+    function render() {
+      const n = +document.getElementById("count").value;
+      c.innerHTML = "";
+      for (let i = 1; i <= n; i++) {
+        const d = document.createElement("div");
+        d.className = "item";
+        d.textContent = i;
+        c.appendChild(d);
+      }
+      document.querySelectorAll("[data-prop]").forEach(s => c.style[s.dataset.prop] = s.value);
+      const g = document.getElementById("gap").value;
+      c.style.gap = g + "px";
+      document.getElementById("gapv").textContent = g + "px";
+
+      document.getElementById("code").textContent =
+`.container {
+  display: flex;
+  flex-direction: ${c.style.flexDirection};
+  justify-content: ${c.style.justifyContent};
+  align-items: ${c.style.alignItems};
+  flex-wrap: ${c.style.flexWrap};
+  gap: ${g}px;
+}`;
+    }
+
+    document.querySelectorAll("select, input").forEach(el => el.addEventListener("input", render));
+    render();
+  </script>
+</body>
+</html>

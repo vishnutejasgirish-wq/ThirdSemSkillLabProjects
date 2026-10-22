@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid vs Flexbox</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 1100px; margin: 20px auto; padding: 0 16px; }
+    .demo { display: flex; gap: 24px; flex-wrap: wrap; }
+    .demo > div { flex: 1 1 400px; }
+    .tile { background: #f2994a; padding: 20px; border-radius: 8px; text-align: center; font-weight: bold; }
+    .tile.wide { padding: 20px 60px; }
+
+    /* FLEXBOX: one direction; items size themselves and wrap */
+    .flex { display: flex; flex-wrap: wrap; gap: 12px; background: #e3e9f5; padding: 12px; border-radius: 8px; }
+
+    /* GRID: rows AND columns together; everything lines up */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; background: #e4f2e6; padding: 12px; border-radius: 8px; }
+
+    /* GRID page layout example */
+    .page {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      grid-template-rows: 60px 200px 50px;
+      grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .page > * { border-radius: 6px; padding: 10px; color: white; font-weight: bold; }
+    .h { grid-area: header; background: #2f5fa8; }
+    .s { grid-area: sidebar; background: #4a5266; }
+    .m { grid-area: main; background: #3e7d5a; }
+    .f { grid-area: footer; background: #b4531a; }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr 1fr; }   /* 2 columns on phones */
+      .page { grid-template-columns: 1fr; grid-template-rows: auto;
+              grid-template-areas: "header" "main" "sidebar" "footer"; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Flexbox vs Grid: same 7 tiles</h1>
+  <div class="demo">
+    <div>
+      <h2>Flexbox (1-D)</h2>
+      <p>Each row decides its own sizes. Columns don’t line up.</p>
+      <div class="flex">
+        <div class="tile">1</div><div class="tile wide">2</div><div class="tile">3</div>
+        <div class="tile">4</div><div class="tile wide">5</div><div class="tile">6</div><div class="tile">7</div>
+      </div>
+    </div>
+    <div>
+      <h2>Grid (2-D)</h2>
+      <p><code>grid-template-columns: repeat(3, 1fr)</code>: perfect columns.</p>
+      <div class="grid">
+        <div class="tile">1</div><div class="tile wide">2</div><div class="tile">3</div>
+        <div class="tile">4</div><div class="tile wide">5</div><div class="tile">6</div><div class="tile">7</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Grid shines for whole-page layouts</h2>
+  <div class="page">
+    <div class="h">header</div>
+    <div class="s">sidebar</div>
+    <div class="m">main</div>
+    <div class="f">footer</div>
+  </div>
+  <p><b>Rule of thumb:</b> Flexbox for a row or column of things (navbar, card row). Grid for rows and columns together (gallery, page layout).</p>
+</body>
+</html>

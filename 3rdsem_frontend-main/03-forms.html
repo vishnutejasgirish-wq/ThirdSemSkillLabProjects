@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Forms</title>
+</head>
+<body>
+
+  <h1>Student Registration</h1>
+
+  <form>
+    <!-- label "for" and input "id" must be the SAME word -->
+    <!-- TRY THIS: click the word "Name" and the box gets selected -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+    <br><br>
+
+    <!-- type="email" checks for @ automatically -->
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+    <br><br>
+
+    <!-- type="number" with min and max -->
+    <label for="sem">Semester:</label>
+    <input type="number" id="sem" min="1" max="8">
+    <br><br>
+
+    <!-- type="password" hides the text -->
+    <label for="pwd">Password:</label>
+    <input type="password" id="pwd">
+    <br><br>
+
+    <!-- select = drop-down list -->
+    <label for="course">Course:</label>
+    <select id="course">
+      <option>CSE</option>
+      <option>ISE</option>
+      <option>ECE</option>
+    </select>
+    <br><br>
+
+    <!-- radio = choose only ONE (same name="gender") -->
+    Gender:
+    <input type="radio" name="gender"> Male
+    <input type="radio" name="gender"> Female
+    <br><br>
+
+    <!-- checkbox = choose MANY -->
+    Hobbies:
+    <input type="checkbox"> Sports
+    <input type="checkbox"> Music
+    <br><br>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <!-- TRY THIS: click Register with empty boxes, then type "abc" as email -->
+
+</body>
+</html>

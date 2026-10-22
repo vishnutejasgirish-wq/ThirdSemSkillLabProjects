@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Demo</title>
+  <!-- Bootstrap CSS from a CDN (needs internet). Comment this line out to see the page WITHOUT Bootstrap. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <!-- Navbar: all styling comes from Bootstrap classes, no CSS written by us -->
+  <nav class="navbar navbar-dark bg-primary px-3">
+    <span class="navbar-brand">Vishal</span>
+    <div>
+      <a class="text-white me-3" href="#">About</a>
+      <a class="text-white" href="#">Projects</a>
+    </div>
+  </nav>
+
+  <div class="container my-4">
+    <h1 class="display-5">Hi, I'm Vishal</h1>
+    <p class="lead">This page has <b>zero</b> lines of our own CSS. Every look comes from Bootstrap class names.</p>
+    <button class="btn btn-primary">btn-primary</button>
+    <button class="btn btn-success">btn-success</button>
+    <button class="btn btn-outline-danger">btn-outline-danger</button>
+
+    <h2 class="mt-5">Responsive grid: col-md-4</h2>
+    <p>3 columns on laptops, stacked on phones (try the device toolbar).</p>
+    <div class="row g-3">
+      <div class="col-md-4"><div class="card p-3 shadow-sm"><h5>Portfolio</h5><p class="mb-0">This website.</p></div></div>
+      <div class="col-md-4"><div class="card p-3 shadow-sm"><h5>Calculator</h5><p class="mb-0">C mini project.</p></div></div>
+      <div class="col-md-4"><div class="card p-3 shadow-sm"><h5>Line follower</h5><p class="mb-0">Robotics club.</p></div></div>
+    </div>
+
+    <h2 class="mt-5">Alerts and badges</h2>
+    <div class="alert alert-warning">This is a ready-made warning box. <span class="badge bg-dark">NEW</span></div>
+  </div>
+</body>
+</html>

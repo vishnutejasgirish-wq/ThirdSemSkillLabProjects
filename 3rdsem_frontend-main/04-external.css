@@ -1,0 +1,6 @@
+/* This is an EXTERNAL CSS file. */
+/* It is linked from 04-css-three-ways.html using <link> */
+
+.external {
+  color: green;
+}

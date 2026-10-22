@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Three Ways to Add CSS</title>
+
+  <!-- WAY 3: EXTERNAL CSS - styles are in a separate file -->
+  <link rel="stylesheet" href="04-external.css">
+
+  <!-- WAY 2: INTERNAL CSS - styles inside a <style> tag -->
+  <style>
+    .internal {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Three ways to add CSS</h1>
+
+  <!-- WAY 1: INLINE CSS - style written directly on the tag -->
+  <p style="color: red;">1. Inline CSS: I am red</p>
+
+  <p class="internal">2. Internal CSS: I am blue</p>
+
+  <p class="external">3. External CSS: I am green (from 04-external.css)</p>
+
+  <!-- Best for projects: EXTERNAL, because one CSS file can style many pages -->
+
+</body>
+</html>

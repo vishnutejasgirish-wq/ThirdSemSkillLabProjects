@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Which CSS Rule Wins?</title>
+  <style>
+    /* Four rules try to colour the SAME paragraph */
+
+    p {               /* element = weak */
+      color: green;
+    }
+
+    .lead {           /* class = stronger than element */
+      color: blue;
+    }
+
+    #intro {          /* id = stronger than class */
+      color: red;
+    }
+
+    p {               /* same strength as the first p, but written LATER */
+      color: purple;
+    }
+
+    /* Strength order:  inline style  >  #id  >  .class  >  element  */
+    /* If two rules have the SAME strength, the one written LAST wins */
+  </style>
+</head>
+<body>
+
+  <h1>Which colour will this be?</h1>
+
+  <p id="intro" class="lead">Who wins?</p>
+
+  <!--
+    TRY THIS, one step at a time:
+    1. Ask the class to guess the colour. (Answer: red, because #id is strongest)
+    2. Delete the #intro rule  -> becomes blue  (.class wins)
+    3. Delete the .lead rule   -> becomes purple (last p rule wins)
+    4. Add style="color: orange;" to the <p> -> orange (inline beats all)
+  -->
+
+</body>
+</html>

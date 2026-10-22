@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>display and position</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 60px;
+      background-color: orange;
+      margin: 5px;
+      display: inline-block;
+    }
+
+    /* display: none = box is GONE, no space left */
+    .gone {
+      display: none;
+    }
+
+    /* visibility: hidden = box is invisible, but its SPACE stays */
+    .invisible {
+      visibility: hidden;
+    }
+
+    /* POSITION */
+    .parent {
+      position: relative;          /* children with absolute stick to this box */
+      width: 400px;
+      height: 150px;
+      background-color: lightgray;
+    }
+    .move-a-bit {
+      position: relative;          /* move from its normal place */
+      top: 20px;
+      left: 20px;
+      background-color: lightgreen;
+    }
+    .corner {
+      position: absolute;          /* stick to the parent's corner */
+      top: 0;
+      right: 0;
+      background-color: red;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>1. display: none vs visibility: hidden</h2>
+
+  <p>Normal:</p>
+  <div class="box">A</div><div class="box">B</div><div class="box">C</div>
+
+  <p>B with display: none (C moves left):</p>
+  <div class="box">A</div><div class="box gone">B</div><div class="box">C</div>
+
+  <p>B with visibility: hidden (gap stays):</p>
+  <div class="box">A</div><div class="box invisible">B</div><div class="box">C</div>
+
+  <h2>2. position: relative vs absolute</h2>
+
+  <div class="parent">
+    <span class="move-a-bit">relative: moved 20px</span>
+    <span class="corner">absolute: top right</span>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spot the Bug - Day 1 Challenge</title>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #0f172a; color: #f8fafc; padding: 2rem 1.25rem; max-width: 900px; margin: 0 auto; line-height: 1.6; }
+    .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #334155; }
+    .back-link { text-decoration: none; color: #818cf8; font-weight: 700; background: #1e293b; padding: 0.45rem 0.9rem; border-radius: 8px; font-size: 0.9rem; border: 1px solid #334155; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.25rem; }
+    .bug-card { background: #1e293b; border: 2px solid #f43f5e; border-radius: 16px; padding: 1.5rem; transition: all 0.2s; }
+    .bug-card.fixed { border-color: #10b981; }
+    pre { background: #090d16; padding: 1rem; border-radius: 10px; font-family: monospace; font-size: 0.82rem; color: #fda4af; overflow-x: auto; }
+    .bug-card.fixed pre { color: #6ee7b7; }
+    .fix-btn { background: #6366f1; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.82rem; }
+    .explain { display: none; margin-top: 0.75rem; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); color: #a7f3d0; padding: 0.75rem; border-radius: 8px; font-size: 0.85rem; }
+    .bug-card.fixed .explain { display: block; }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <a href="index.html" class="back-link">← Back to index.html</a>
+    <a href="portfolio/index.html" class="back-link">Next: Finished Portfolio →</a>
+  </div>
+
+  <h1>🐞 Spot the Bug! (Day 1 Debugging Lab)</h1>
+  <p style="color:#94a3b8; margin-bottom:1.5rem;">Ask students to identify the bug in each snippet, then click <strong>Reveal Fix</strong>:</p>
+
+  <div class="grid">
+    <div class="bug-card" id="bug1">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <strong>Bug #1: Flexbox Not Working</strong>
+        <button class="fix-btn" onclick="toggleBug(1)">✨ Reveal Fix</button>
+      </div>
+      <pre id="code1">.navbar {
+  justify-content: space-between;
+  align-items: center;
+}</pre>
+      <div class="explain"><strong>Fix:</strong> Added <code>display: flex;</code>! Alignment properties do nothing unless flex display is enabled.</div>
+    </div>
+
+    <div class="bug-card" id="bug2">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <strong>Bug #2: 100% Width Overflow</strong>
+        <button class="fix-btn" onclick="toggleBug(2)">✨ Reveal Fix</button>
+      </div>
+      <pre id="code2">.card {
+  width: 100%;
+  padding: 32px;
+  border: 4px solid white;
+}</pre>
+      <div class="explain"><strong>Fix:</strong> Added <code>box-sizing: border-box;</code> so padding &amp; border stay inside the 100% width!</div>
+    </div>
+
+    <div class="bug-card" id="bug3">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <strong>Bug #3: Stylesheet Not Loading</strong>
+        <button class="fix-btn" onclick="toggleBug(3)">✨ Reveal Fix</button>
+      </div>
+      <pre id="code3">&lt;head&gt;
+  &lt;link src="04-external.css"&gt;
+&lt;/head&gt;</pre>
+      <div class="explain"><strong>Fix:</strong> Use <code>&lt;link rel="stylesheet" href="04-external.css"&gt;</code> instead of <code>src</code>!</div>
+    </div>
+
+    <div class="bug-card" id="bug4">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <strong>Bug #4: Specificity Override</strong>
+        <button class="fix-btn" onclick="toggleBug(4)">✨ Reveal Fix</button>
+      </div>
+      <pre id="code4">#hero { color: purple; }
+.yellow { color: yellow; }</pre>
+      <div class="explain"><strong>Fix:</strong> Use <code>#hero.yellow { color: yellow; }</code> because ID (0,1,0,0) beats Class (0,0,1,0).</div>
+    </div>
+  </div>
+
+  <script>
+    const snippets = {
+      1: {
+        broken: ".navbar {\n  justify-content: space-between;\n  align-items: center;\n}",
+        fixed: ".navbar {\n  display: flex; /* Fixed! */\n  justify-content: space-between;\n  align-items: center;\n}"
+      },
+      2: {
+        broken: ".card {\n  width: 100%;\n  padding: 32px;\n  border: 4px solid white;\n}",
+        fixed: ".card {\n  box-sizing: border-box; /* Fixed! */\n  width: 100%;\n  padding: 32px;\n  border: 4px solid white;\n}"
+      },
+      3: {
+        broken: "<head>\n  <link src=\"04-external.css\">\n</head>",
+        fixed: "<head>\n  <link rel=\"stylesheet\" href=\"04-external.css\">\n</head>"
+      },
+      4: {
+        broken: "#hero { color: purple; }\n.yellow { color: yellow; }",
+        fixed: "#hero { color: purple; }\n#hero.yellow { color: yellow; /* Fixed! */ }"
+      }
+    };
+    function toggleBug(id) {
+      const card = document.getElementById('bug' + id);
+      const isFixed = card.classList.toggle('fixed');
+      document.getElementById('code' + id).textContent = isFixed ? snippets[id].fixed : snippets[id].broken;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Elements Demo</title>
+  <style>
+    /* Coloured outlines so students can SEE each semantic area */
+    body { font-family: system-ui, sans-serif; max-width: 900px; margin: 20px auto; padding: 0 16px; }
+    header, nav, main, section, article, footer { padding: 10px; margin: 8px 0; border: 2px dashed; position: relative; }
+    header  { border-color: #2f5fa8; }
+    nav     { border-color: #8db4f0; }
+    main    { border-color: #3e7d5a; }
+    section { border-color: #f2994a; }
+    article { border-color: #b4531a; }
+    footer  { border-color: #4a5266; }
+    .label::before { content: attr(data-tag); position: absolute; top: -12px; right: 8px; background: white; font: bold 12px monospace; padding: 0 4px; }
+    table, th, td { border: 1px solid #999; border-collapse: collapse; padding: 6px 12px; }
+    body.plain .label { border: none; }
+    body.plain .label::before { display: none; }
+    #toggle { position: fixed; bottom: 16px; right: 16px; padding: 10px 14px; }
+  </style>
+</head>
+<body>
+  <header class="label" data-tag="<header>">
+    <h1>My Student Profile</h1>   <!-- h1 = most important heading -->
+    <nav class="label" data-tag="<nav>">
+      <a href="#about">About</a> |
+      <a href="#skills">Skills</a> |
+      <a href="#links">Links</a>
+    </nav>
+  </header>
+
+  <main class="label" data-tag="<main>">
+    <section id="about" class="label" data-tag="<section>">
+      <h2>About me</h2>                                   <!-- h2 = sub-heading -->
+      <img src="https://picsum.photos/150" alt="Photo of the student">
+      <p>I am a <b>3rd semester</b> student. This is a <i>paragraph</i>.</p>
+
+      <h3>Unordered list (bullets)</h3>
+      <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+      </ul>
+
+      <h3>Ordered list (numbers)</h3>
+      <ol>
+        <li>Wake up</li>
+        <li>Code</li>
+      </ol>
+    </section>
+
+    <section id="skills" class="label" data-tag="<section>">
+      <h2>Skills table</h2>
+      <table>
+        <tr><th>Skill</th><th>Level</th></tr>      <!-- th = header cell -->
+        <tr><td>HTML</td><td>Beginner</td></tr>    <!-- td = data cell -->
+        <tr><td>C</td><td>Intermediate</td></tr>
+      </table>
+    </section>
+
+    <section id="links" class="label" data-tag="<section>">
+      <h2>Links</h2>
+      <article class="label" data-tag="<article>">
+        <p><a href="https://www.rvce.edu.in" target="_blank">External link (opens new tab)</a></p>
+        <p><a href="#about">Internal link: jump to About</a></p>
+        <p><a href="03-forms.html">Link to another page</a></p>
+      </article>
+      <div>A &lt;div&gt; is a generic box. <span style="color:red">A &lt;span&gt; is generic inline text.</span></div>
+    </section>
+  </main>
+
+  <footer class="label" data-tag="<footer>">© 2026 Student Name</footer>
+
+  <button id="toggle" onclick="document.body.classList.toggle('plain')">Toggle outlines</button>
+</body>
+</html>

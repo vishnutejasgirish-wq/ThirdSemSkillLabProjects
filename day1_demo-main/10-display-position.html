@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>display, visibility, position</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 20px auto; padding: 0 16px; }
+    .row { display: flex; gap: 12px; align-items: center; margin: 12px 0; }
+    .box { width: 120px; height: 80px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; border-radius: 8px; }
+    .a { background: #2f5fa8; } .b { background: #f2994a; } .c { background: #3e7d5a; }
+    button { padding: 8px 12px; font-size: 15px; cursor: pointer; }
+    section { border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 24px; }
+
+    /* POSITION demo */
+    .parent { position: relative; height: 220px; background: #e3e9f5; border: 2px dashed #2f5fa8; border-radius: 8px; }
+    .parent p { margin: 8px; }
+    .badge { background: #c2382b; color: white; padding: 6px 12px; border-radius: 20px; font-weight: bold; display: inline-block; }
+    code { background: #eee; padding: 2px 6px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>display vs visibility · relative vs absolute</h1>
+
+  <section>
+    <h2>1. Hiding: display: none vs visibility: hidden</h2>
+    <div class="row">
+      <div class="box a">A</div>
+      <div class="box b" id="hideMe">B</div>
+      <div class="box c">C</div>
+    </div>
+    <div class="row">
+      <button onclick="setHide('display','none')">B → display: none</button>
+      <button onclick="setHide('visibility','hidden')">B → visibility: hidden</button>
+      <button onclick="reset()">Reset</button>
+    </div>
+    <p>Watch C: with <code>display:none</code> it slides left (space removed). With <code>visibility:hidden</code> the gap stays.</p>
+  </section>
+
+  <section>
+    <h2>2. Moving: position relative vs absolute</h2>
+    <div class="parent">
+      <p>I am the parent with <code>position: relative</code>. Text before the badge.</p>
+      <span class="badge" id="badge">NEW</span>
+      <p>Text after the badge. Watch whether I move.</p>
+    </div>
+    <div class="row">
+      <button onclick="pos('static')">static (normal)</button>
+      <button onclick="pos('relative')">relative; top:20px; left:40px</button>
+      <button onclick="pos('absolute')">absolute; top:10px; right:10px</button>
+    </div>
+    <p><b>relative</b>: badge shifts, but its old space stays, so neighbours don’t move.<br>
+       <b>absolute</b>: badge leaves the flow (text below moves up) and sticks to the parent’s corner.</p>
+  </section>
+
+  <script>
+    const b = document.getElementById("hideMe");
+    function setHide(prop, val) { reset(); b.style[prop] = val; }
+    function reset() { b.style.display = ""; b.style.visibility = ""; }
+
+    const badge = document.getElementById("badge");
+    function pos(p) {
+      badge.style.position = p;
+      badge.style.top = badge.style.left = badge.style.right = "";
+      if (p === "relative") { badge.style.top = "20px"; badge.style.left = "40px"; }
+      if (p === "absolute") { badge.style.top = "10px"; badge.style.right = "10px"; }
+    }
+  </script>
+</body>
+</html>

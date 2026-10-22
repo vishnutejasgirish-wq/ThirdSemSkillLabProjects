@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Selectors Demo</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 20px auto; padding: 0 16px; }
+    .layout { display: flex; gap: 24px; flex-wrap: wrap; }
+    .buttons { display: flex; flex-direction: column; gap: 8px; width: 300px; }
+    .buttons button { font-family: monospace; font-size: 16px; padding: 10px; text-align: left; cursor: pointer; }
+    #demo { flex: 1; min-width: 300px; border: 1px solid #ccc; padding: 16px; border-radius: 8px; }
+    .hit { outline: 4px solid #f2994a; background: #fcefd9; }
+    .card { border: 1px solid #999; padding: 8px; margin: 8px 0; border-radius: 6px; }
+
+    /* A REAL pseudo-class: hover over the links in the demo */
+    #demo a:hover { color: white; background: #2f5fa8; }
+  </style>
+</head>
+<body>
+  <h1>Which elements does each selector pick?</h1>
+  <p>Click a selector: the elements it matches light up orange. Hover over the links to see <code>a:hover</code>.</p>
+
+  <div class="layout">
+    <div class="buttons">
+      <button data-sel="p">p  (element)</button>
+      <button data-sel=".card">.card  (class)</button>
+      <button data-sel="#special">#special  (id)</button>
+      <button data-sel=".card p">.card p  (descendant)</button>
+      <button data-sel=".card > p">.card &gt; p  (direct child)</button>
+      <button data-sel="input[type='email']">input[type='email']  (attribute)</button>
+      <button data-sel="li:first-child">li:first-child  (pseudo-class)</button>
+      <button data-sel="h2, h3">h2, h3  (group)</button>
+      <button data-sel="*">*  (everything)</button>
+    </div>
+
+    <div id="demo">
+      <h2>Student list</h2>
+      <p>A paragraph outside any card.</p>
+      <div class="card">
+        <h3>Card 1</h3>
+        <p>Direct child paragraph of card 1.</p>
+        <div><p>Paragraph nested deeper (grandchild) in card 1.</p></div>
+      </div>
+      <div class="card" id="special">
+        <h3>Card 2 (id="special")</h3>
+        <p>Direct child paragraph of card 2.</p>
+      </div>
+      <ul>
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+      </ul>
+      <input type="text" placeholder="text input">
+      <input type="email" placeholder="email input">
+      <p><a href="#">Hover me</a> and <a href="#">me too</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll(".buttons button").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const demo = document.getElementById("demo");
+        demo.querySelectorAll(".hit").forEach(el => el.classList.remove("hit"));
+        demo.querySelectorAll(btn.dataset.sel).forEach(el => el.classList.add("hit"));
+      });
+    });
+  </script>
+</body>
+</html>

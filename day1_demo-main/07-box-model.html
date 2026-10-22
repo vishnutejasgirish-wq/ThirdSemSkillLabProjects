@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Model Playground</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 20px auto; padding: 0 16px; }
+    .panel { display: grid; grid-template-columns: 180px 1fr 60px; gap: 8px 12px; align-items: center; max-width: 520px; }
+    .panel label { font-weight: 600; }
+    .stage { margin-top: 24px; background: repeating-linear-gradient(45deg, #fcefd9, #fcefd9 10px, #fff 10px, #fff 20px); display: inline-block; }
+    /* the striped orange area around the box = MARGIN */
+    #box { background: #e4f2e6; border-style: solid; border-color: #4a5266; }
+    /* green = PADDING (shows because background fills padding) */
+    #content { background: #2f5fa8; color: white; padding: 8px; text-align: center; }
+    #readout { font-family: monospace; font-size: 20px; background: #141b2d; color: #f3f1ea; padding: 16px; border-radius: 8px; margin-top: 16px; }
+    .legend span { display: inline-block; padding: 4px 10px; margin-right: 8px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Box model playground</h1>
+  <p class="legend">
+    <span style="background:#fcefd9">margin (striped)</span>
+    <span style="background:#4a5266;color:white">border</span>
+    <span style="background:#e4f2e6">padding</span>
+    <span style="background:#2f5fa8;color:white">content</span>
+  </p>
+
+  <div class="panel">
+    <label for="w">width</label><input type="range" id="w" min="100" max="500" value="300"><span id="wv"></span>
+    <label for="p">padding</label><input type="range" id="p" min="0" max="60" value="20"><span id="pv"></span>
+    <label for="b">border</label><input type="range" id="b" min="0" max="30" value="5"><span id="bv"></span>
+    <label for="m">margin</label><input type="range" id="m" min="0" max="60" value="20"><span id="mv"></span>
+    <label for="bs">box-sizing</label>
+    <select id="bs"><option>content-box</option><option>border-box</option></select><span></span>
+  </div>
+
+  <div class="stage">
+    <div id="box"><div id="content">content</div></div>
+  </div>
+
+  <div id="readout"></div>
+
+  <script>
+    const box = document.getElementById("box");
+    const ids = ["w", "p", "b", "m"];
+
+    function update() {
+      const w = +document.getElementById("w").value;
+      const p = +document.getElementById("p").value;
+      const b = +document.getElementById("b").value;
+      const m = +document.getElementById("m").value;
+      const bs = document.getElementById("bs").value;
+
+      box.style.width = w + "px";
+      box.style.padding = p + "px";
+      box.style.borderWidth = b + "px";
+      box.style.margin = m + "px";
+      box.style.boxSizing = bs;
+
+      ids.forEach(id => document.getElementById(id + "v").textContent = document.getElementById(id).value + "px");
+
+      const real = box.getBoundingClientRect().width;
+      const css = `.box {\n  width: ${w}px;\n  padding: ${p}px;\n  border: ${b}px solid;\n  margin: ${m}px;\n  box-sizing: ${bs};\n}`;
+      const maths = bs === "content-box"
+        ? `${b} + ${p} + ${w} + ${p} + ${b} = ${w + 2 * p + 2 * b}px`
+        : `width already includes padding + border = ${w}px`;
+      document.getElementById("readout").innerText =
+        css + "\n\nVisible box width: " + Math.round(real) + "px\n" + maths +
+        "\n(+ margin " + m + "px on each side, outside the box)";
+    }
+
+    document.querySelectorAll("input, select").forEach(el => el.addEventListener("input", update));
+    update();
+  </script>
+</body>
+</html>

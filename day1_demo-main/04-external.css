@@ -1,0 +1,14 @@
+/* EXTERNAL CSS file: linked from 04-css-three-ways.html */
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 0 16px;
+}
+
+.external {
+  background: #e4f2e6;
+  color: #3e7d5a;
+  padding: 16px;
+  border-radius: 8px;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>06 - CSS Specificity</title>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; color: #0f172a; padding: 2rem 1.25rem; max-width: 860px; margin: 0 auto; line-height: 1.6; }
+    .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; }
+    .back-link { text-decoration: none; color: #4f46e5; font-weight: 700; background: #eef2ff; padding: 0.45rem 0.9rem; border-radius: 8px; font-size: 0.9rem; }
+    .rule-row { display: flex; align-items: center; justify-content: space-between; background: white; padding: 0.9rem 1.25rem; border-radius: 12px; border: 2px solid #e2e8f0; margin-bottom: 0.75rem; cursor: pointer; }
+    .rule-row.winner { border-color: #4f46e5; background: #eef2ff; }
+    .score { font-family: monospace; font-weight: 800; background: #0f172a; color: white; padding: 0.25rem 0.65rem; border-radius: 6px; }
+    .preview-banner { padding: 2rem; border-radius: 16px; color: white; font-weight: 800; font-size: 1.25rem; text-align: center; margin-top: 1.25rem; transition: background 0.25s; }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <a href="index.html" class="back-link">← Back to index.html</a>
+    <a href="07-box-model.html" class="back-link">Next: 07 Box Model →</a>
+  </div>
+
+  <h1>06. Specificity — Which CSS Rule Wins?</h1>
+  <p>Toggle the competing rules below on/off to see how the browser calculates specificity <code>(Inline, ID, Class, Element)</code>:</p>
+
+  <div id="rulesContainer">
+    <label class="rule-row">
+      <span><input type="checkbox" id="chkInline" onchange="updateSpecificity()"> <strong>Inline Style</strong> <code>style="background: #dc2626;"</code></span>
+      <span class="score">(1, 0, 0, 0)</span>
+    </label>
+    <label class="rule-row">
+      <span><input type="checkbox" id="chkId" checked onchange="updateSpecificity()"> <strong>ID Selector</strong> <code>#title-id { background: #9333ea; }</code></span>
+      <span class="score">(0, 1, 0, 0)</span>
+    </label>
+    <label class="rule-row">
+      <span><input type="checkbox" id="chkClass" checked onchange="updateSpecificity()"> <strong>Class Selector</strong> <code>.title-class { background: #059669; }</code></span>
+      <span class="score">(0, 0, 1, 0)</span>
+    </label>
+    <label class="rule-row">
+      <span><input type="checkbox" id="chkTag" checked onchange="updateSpecificity()"> <strong>Element Selector</strong> <code>h2 { background: #2563eb; }</code></span>
+      <span class="score">(0, 0, 0, 1)</span>
+    </label>
+  </div>
+
+  <h2 id="targetHeading" class="preview-banner">
+    Inspect Me: &lt;h2 id="title-id" class="title-class"&gt;
+  </h2>
+
+  <script>
+    function updateSpecificity() {
+      const inlineOn = document.getElementById('chkInline').checked;
+      const idOn = document.getElementById('chkId').checked;
+      const classOn = document.getElementById('chkClass').checked;
+      const tagOn = document.getElementById('chkTag').checked;
+      const target = document.getElementById('targetHeading');
+
+      if (inlineOn) {
+        target.style.background = '#dc2626';
+        target.textContent = 'Winner: Inline style="" (1,0,0,0) — Red!';
+      } else if (idOn) {
+        target.style.background = '#9333ea';
+        target.textContent = 'Winner: #title-id (0,1,0,0) — Purple!';
+      } else if (classOn) {
+        target.style.background = '#059669';
+        target.textContent = 'Winner: .title-class (0,0,1,0) — Emerald!';
+      } else if (tagOn) {
+        target.style.background = '#2563eb';
+        target.textContent = 'Winner: h2 Element (0,0,0,1) — Blue!';
+      } else {
+        target.style.background = '#64748b';
+        target.textContent = 'No rules active — Browser Default';
+      }
+    }
+    updateSpecificity();
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skeleton, Skin, Brain</title>
+  <!-- SKIN (CSS): this whole <style> block is switched on/off by the button -->
+  <style id="skin">
+    body { font-family: system-ui, sans-serif; background: #f5f3ee; color: #1a2236; max-width: 700px; margin: 40px auto; padding: 0 16px; }
+    .card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,.08); text-align: center; }
+    .card img { border-radius: 50%; }
+    .card h1 { color: #2f5fa8; margin-bottom: 4px; }
+    .card button { background: #f2994a; border: none; padding: 10px 20px; border-radius: 8px; font-size: 16px; cursor: pointer; }
+    .controls { margin-bottom: 24px; display: flex; gap: 12px; justify-content: center; }
+    .controls button { padding: 10px 16px; font-size: 16px; border-radius: 8px; border: 2px solid #1a2236; background: white; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <button id="toggleSkin">1. Remove the SKIN (CSS)</button>
+    <button id="toggleBrain">2. Turn the BRAIN off (JS)</button>
+  </div>
+
+  <!-- SKELETON (HTML): the content and structure -->
+  <div class="card">
+    <img src="https://picsum.photos/120" alt="Profile photo">
+    <h1>Vishal</h1>
+    <p>3rd semester CSE · RVCE</p>
+    <p>Likes: <span id="likes">0</span></p>
+    <button id="likeBtn">Like ♥</button>
+  </div>
+
+  <!-- BRAIN (JavaScript): behaviour -->
+  <script>
+    let brainOn = true;
+    let likes = 0;
+
+    document.getElementById("likeBtn").addEventListener("click", function () {
+      if (!brainOn) return;              // no brain = button does nothing
+      likes++;
+      document.getElementById("likes").textContent = likes;
+    });
+
+    document.getElementById("toggleSkin").addEventListener("click", function () {
+      const skin = document.getElementById("skin");
+      skin.disabled = !skin.disabled;
+      this.textContent = skin.disabled ? "1. Put the SKIN back (CSS)" : "1. Remove the SKIN (CSS)";
+    });
+
+    document.getElementById("toggleBrain").addEventListener("click", function () {
+      brainOn = !brainOn;
+      this.textContent = brainOn ? "2. Turn the BRAIN off (JS)" : "2. Turn the BRAIN on (JS)";
+    });
+  </script>
+</body>
+</html>

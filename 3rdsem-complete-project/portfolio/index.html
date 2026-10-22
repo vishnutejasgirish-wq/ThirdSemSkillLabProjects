@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vishal Pranav | M.Tech Portfolio — RVCE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="../index.html" class="brand">← Back to Day 1 Demos</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+    </ul>
+  </header>
+
+  <section class="hero" id="about">
+    <div>
+      <span class="tag">Finished Day 1 Capstone Portfolio</span>
+      <h1>Hi, I'm Vishal Pranav 👋</h1>
+      <p style="color: var(--muted); margin-bottom: 1.25rem;">
+        M.Tech Scholar at <strong>RV College of Engineering (RVCE), Bengaluru</strong>. This capstone portfolio combines every Day 1 concept: Semantic HTML5, CSS Box Model, Flexbox Navbar, CSS Grid Cards, and Responsive Media Queries.
+      </p>
+      <a href="../01-skeleton-skin-brain.html" style="display:inline-block; background:#6366f1; color:white; text-decoration:none; padding:0.65rem 1.25rem; border-radius:10px; font-weight:700; font-size:0.9rem;">Explore My Lab Demos →</a>
+    </div>
+    <div class="stats-box">
+      <div class="stat-item"><strong>12</strong><span>Concept Demos</span></div>
+      <div class="stat-item"><strong>100%</strong><span>Responsive</span></div>
+      <div class="stat-item"><strong>HTML5</strong><span>Semantic</span></div>
+      <div class="stat-item"><strong>CSS3</strong><span>Grid + Flex</span></div>
+    </div>
+  </section>
+
+  <div class="section-wrap" id="projects">
+    <h2>Featured Coursework &amp; Lab Demos</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterProjects('all', this)">All Demos</button>
+      <button class="filter-btn" onclick="filterProjects('html', this)">HTML5</button>
+      <button class="filter-btn" onclick="filterProjects('css', this)">CSS3 Layout</button>
+    </div>
+
+    <section class="projects-grid" id="portfolioGrid">
+      <article class="project-card" data-cat="html">
+        <span class="tag" style="margin:0;">HTML + CSS + JS</span>
+        <h3>01. Skeleton, Skin &amp; Brain</h3>
+        <p>Interactive layer toggler showing how HTML structure, CSS presentation, and JS behavior work together.</p>
+        <a href="../01-skeleton-skin-brain.html">Open Demo 01 →</a>
+      </article>
+      <article class="project-card" data-cat="css">
+        <span class="tag" style="margin:0;">CSS Box Model</span>
+        <h3>07. Interactive Box Model</h3>
+        <p>Live visualizer for Content, Padding, Border, Margin, and box-sizing: border-box.</p>
+        <a href="../07-box-model.html">Open Demo 07 →</a>
+      </article>
+      <article class="project-card" data-cat="css">
+        <span class="tag" style="margin:0;">Flexbox &amp; Grid</span>
+        <h3>08 &amp; 11. Flexbox &amp; Grid</h3>
+        <p>1D and 2D modern responsive layouts without floats or positioning hacks.</p>
+        <a href="../08-flexbox-playground.html">Open Demo 08 →</a>
+      </article>
+      <article class="project-card" data-cat="html">
+        <span class="tag" style="margin:0;">Debugging Lab</span>
+        <h3>Spot The Bug Challenge</h3>
+        <p>Interactive quiz fixing common HTML &amp; CSS layout and specificity bugs.</p>
+        <a href="../spot-the-bug.html">Open Bug Lab →</a>
+      </article>
+    </section>
+  </div>
+
+  <script>
+    function filterProjects(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>09 - Responsive Design</title>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; color: #0f172a; padding: 2rem 1.25rem; max-width: 960px; margin: 0 auto; line-height: 1.6; }
+    .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0; }
+    .back-link { text-decoration: none; color: #4f46e5; font-weight: 700; background: #eef2ff; padding: 0.45rem 0.9rem; border-radius: 8px; font-size: 0.9rem; }
+    .toolbar { background: white; padding: 1rem 1.25rem; border-radius: 14px; border: 1px solid #e2e8f0; margin-bottom: 1.25rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
+    .preset-btn { padding: 0.45rem 0.9rem; border-radius: 8px; border: 1px solid #cbd5e1; background: #f8fafc; font-weight: 700; cursor: pointer; font-size: 0.85rem; }
+    .preset-btn:hover { background: #4f46e5; color: white; }
+    .viewport-frame { margin: 0 auto; background: #e2e8f0; padding: 1.25rem; border-radius: 18px; border: 3px solid #334155; transition: width 0.25s ease; max-width: 100%; }
+    .responsive-grid { display: grid; gap: 1rem; }
+    .card { background: white; padding: 1.25rem; border-radius: 12px; border: 1px solid #cbd5e1; font-weight: 600; }
+    /* Real Media Queries for when the browser window itself is resized */
+    @media (max-width: 639px) { .responsive-grid { grid-template-columns: 1fr; } }
+    @media (min-width: 640px) and (max-width: 899px) { .responsive-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .responsive-grid { grid-template-columns: repeat(3, 1fr); } }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <a href="index.html" class="back-link">← Back to index.html</a>
+    <a href="10-display-position.html" class="back-link">Next: 10 display and position →</a>
+  </div>
+
+  <h1>09. Responsive Design &amp; Media Queries</h1>
+  <div class="toolbar">
+    <div>
+      <strong>Simulated Viewport Width: <span id="vpLabel" style="color:#4f46e5;">100% (Desktop 3-Cols)</span></strong>
+    </div>
+    <div style="display:flex; gap:0.5rem;">
+      <button class="preset-btn" onclick="setSimWidth(360, 'Mobile (360px • 1 Col)', 1)">📱 Mobile (360px)</button>
+      <button class="preset-btn" onclick="setSimWidth(680, 'Tablet (680px • 2 Cols)', 2)">💊 Tablet (680px)</button>
+      <button class="preset-btn" onclick="setSimWidth(920, 'Desktop (920px • 3 Cols)', 3)">💻 Desktop (920px)</button>
+    </div>
+  </div>
+
+  <div class="viewport-frame" id="vpFrame">
+    <div class="responsive-grid" id="gridTarget" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="card">Card 1 — Adapts automatically across Mobile, Tablet, and Desktop</div>
+      <div class="card">Card 2 — Media Queries (<code>@media (min-width: ...)</code>)</div>
+      <div class="card">Card 3 — Fluid Grid Columns</div>
+    </div>
+  </div>
+
+  <script>
+    function setSimWidth(px, label, cols) {
+      document.getElementById('vpFrame').style.width = px + 'px';
+      document.getElementById('vpLabel').textContent = label;
+      document.getElementById('gridTarget').style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
+    }
+  </script>
+</body>
+</html>

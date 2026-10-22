@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Box Model</title>
+  <style>
+    .box {
+      width: 300px;                 /* CONTENT width */
+      padding: 20px;                /* space INSIDE the border */
+      border: 5px solid black;      /* the edge */
+      margin: 30px;                 /* space OUTSIDE the border */
+      background-color: lightblue;  /* colour fills content + padding */
+    }
+
+    /* Same box, but border-box: width includes padding and border */
+    .box2 {
+      width: 300px;
+      padding: 20px;
+      border: 5px solid black;
+      margin: 30px;
+      background-color: lightgreen;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>The Box Model</h1>
+
+  <div class="box">
+    Box 1 (normal):<br>
+    total width = 5 + 20 + 300 + 20 + 5 = 350px
+  </div>
+
+  <div class="box2">
+    Box 2 (border-box):<br>
+    total width = 300px exactly
+  </div>
+
+  <!--
+    TRY THIS:
+    1. Press F12, click a box, look at the "box model" diagram (Computed tab)
+    2. Change padding to 50px and see the box grow
+    3. Change margin to 0 and see the gap between the boxes disappear
+  -->
+
+</body>
+</html>
